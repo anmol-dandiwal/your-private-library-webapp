@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your Library</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="navBar">
+            <div id="navBarContent">
+                <span id="title">Your Library</span>
+                <button onclick="showDropdown(this.id)" id="sortButton" class="navButton">Sort</button>
+                <button onclick="showDropdown(this.id)" id="filterButton" class="navButton">Filter</button>  
+                <button onclick="showDropdown(this.id)" id="addButton" class="navButton">Add Book</button>  
+            </div>
+            <div id="navBarDropdowns">
+                <div id="sortButtonDropdown" class="sortButtonDropdown">
+                    <button id="titleSortButton" class="sortButton">Title</button>
+                    <button id="authorSortButton" class="sortButton">Author</button>
+                    <button id="pagesSortButton" class="sortButton">Pages</button>
+                </div>
+                <div id="filterButtonDropdown" class="filterButtonDropdown">
+                    <button id="readFilterButton" class="sortButton">Read</button>
+                    <button id="unreadFilterButton" class="sortButton">Unread</button>
+                    <button id="inProgressFilterButton" class="sortButton">In Progress</button>
+                </div>
+                <div id="addButtonDropdown" class="addButtonDropdown">
+                    <form onsubmit="showDropdown('addButton'); return addBook();" id="addButtonForm" class="formDropdown">
+                        <h1>Enter Details</h1>
+
+                        <label for="title"><b>Title</b></label>
+                        <input type="text" placeholder="Enter Title" name="title" required>
+
+                        <label for="author"><b>Author</b></label>
+                        <input type="text" placeholder="Enter Author" name="author" required>
+
+                        <label for="pages"><b>Pages</b></label>
+                        <input type="text" placeholder="Enter Pages" name="pages" required>
+
+                        <label for="status"><b>Status</b></label><br>
+                        <div id="statusRadios" class="radio">                           
+                            <label for="Read">Read
+                                <input type="radio" id="Read" name="status" value="Read">
+                                <span class="checkmark" style="bottom: 114px;"></span>
+                            </label><br>
+
+                            <label for="Unread">Unread
+                                <input type="radio" id="Unread" name="status" checked="checked" value="Unread">
+                                <span class="checkmark" style="bottom: 89px;"></span>    
+                            </label><br>
+                            
+                            <label for="InProgress">In Progress
+                                <input type="radio" id="InProgress" name="status" value="InProgress">
+                                <span class="checkmark" style="bottom: 64px;"></span>    
+                            </label><br>
+                        </div>
+                        <button type="submit" class="btn">Submit</button>
+                        <button onclick="clearForm(); return showDropdown('addButton');" type="cancel" class="btn cancel" >Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="library-container">
+            <div id="library"> 
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

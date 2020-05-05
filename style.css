@@ -1,0 +1,321 @@
+@font-face{
+    font-family: custom-font;
+    src: url(quicksand-variablefont_wght-webfont.woff);
+}
+
+body{
+    font-family: "custom-font";
+    color: black;
+    background-color: #f4e1d2;
+}
+
+#navBar{
+    background-color: #b2b2b2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1; 
+    box-shadow: 0px 5px 25px 1px rgba(0,0,0,0.3);
+}
+
+#navBarContent{
+    padding: 0 10px;
+}
+
+#navBarContent > span{
+    background-color: #1d1d1d;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 20px;
+    margin-left: -15px;
+}
+
+#navBarContent > button{
+    color: white;
+    background-color: #b2b2b2;
+    font-weight: bold;
+    font-size: large;
+    border: none;
+    border-radius: 0;
+    height: 50px;
+    padding: 0 20px;
+    margin-left: -5px;
+    text-align: center;
+}
+
+#navBarContent > button:hover{
+    background-color: #414040;
+}
+
+#navBarContent > #addButton{
+    background-color: #7fb37f;
+}
+
+#navBarContent > #addButton:hover{
+    background-color: #289628;
+}
+
+.addButtonDropdown{
+    display: none;
+    background-color: white;
+    border: 1px solid rgb(134, 134, 134);
+    width: 250px;
+    text-align: left;
+    padding: 5px 5px;
+    transform: translateX(235px);
+    box-shadow: 10px 15px 10px 1px rgba(0,0,0,0.3);
+}
+
+#addButtonForm > h1{
+    margin: 5px 0;
+}
+
+#addButtonForm input[type=text]{
+    width: 92%;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border: none;
+    background-color: #f3f3f3;
+}
+
+#addButtonForm input[type=text]:focus{
+    background-color: #dfdfdf;
+}
+
+#addButtonForm > .radio{
+    margin: 0 0 15px 0;
+}
+
+.radio label{
+    padding-left: 30px;
+}
+
+.radio input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio label .checkmark{
+    transition-duration: 0.2s;
+    position: absolute;
+    left: 9px; 
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radio > label:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.radio > label input:checked ~ .checkmark {
+    background-color: #50394c;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio > label .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.radio > label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+#addButtonForm button{
+    border: none;
+    border-radius: 0;
+    padding: 5px 15px;
+    font-size: medium;
+    margin: 0 5px 5px 5px;
+}
+
+#addButtonForm [class=btn]{
+    background-color: #289628;
+    color: white;
+    font-weight: bold;
+}
+
+#addButtonForm [class=btn]:hover{
+    background-color: #165316;
+}
+
+#addButtonForm button[type=cancel]{
+    float: right;
+}
+
+#addButtonForm button[type=cancel]:hover{
+    background-color: rgb(190, 2, 2);
+    color: white;
+    font-weight: bold;
+}
+
+.sortButtonDropdown{
+    position: fixed;
+    display: none;
+    transform: translate(156px, 0px);
+    width: 100px;
+    box-shadow: 5px 5px 25px 1px rgba(0,0,0,0.3);
+}
+
+.sortButtonDropdown > button{
+    background-color: white;
+    font-size: large;
+    border: none;
+    border-radius: 0;
+    width: 100px;
+    text-align: right;
+}
+
+.sortButtonDropdown > button:hover{
+    background-color: #414040;
+    color: white;
+}
+
+.filterButtonDropdown{
+    position: fixed;
+    display: none;
+    transform: translate(200px, 0px);
+    width: 150px;
+    box-shadow: 5px 5px 25px 1px rgba(0,0,0,0.3);
+}
+
+.filterButtonDropdown > button{
+    background-color: white;
+    font-size: large;
+    border: none;
+    border-radius: 0;
+    width: 150px;
+    text-align: right;
+}
+
+.filterButtonDropdown > button:hover{
+    background-color: #414040;
+    color: white;
+}
+
+#library-container{
+    position: absolute;
+    top: 7%;
+    left: 2%;
+    padding: 20px;
+    width: 93%;
+    border: 3px solid #b2b2b2;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+button{
+    border-radius: 5px;
+    font-family: "custom-font";
+}
+
+.book{
+    border: 1px solid #b2b2b2;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    width: 10em;
+    height: 17em;
+    display: inline-block;
+    background-color: #50394c;
+    color: white;
+    box-shadow: 10px 5px 10px 0px rgb(153, 153, 153);
+}
+
+.bookTools{
+    border-top: 1px solid #b2b2b2;
+    border-bottom: 1px solid #b2b2b2;
+    border-right: 1px solid #b2b2b2;
+    position: relative;
+    transform: translate(0%, 250%);
+    width: 219px;
+    height: 50px;
+    margin: -10px;
+    background-color: #ffef96;
+}
+
+.bookTools > button{
+    padding: 2px;
+    border: none;
+    margin: 0 5px;
+}
+
+.bookTools > .deleteButton{
+    position: relative;
+    transform: translate(-15px, 5px);
+    background-color: rgba(255, 255, 255, 0);
+    color: red;
+    -webkit-text-stroke: rgba(255, 0, 0, 0.664) 3px;
+    border: none;
+    font-size: 1.5em;
+    transition-duration: 0.4s;
+}
+
+.deleteButton:hover{
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.deleteButton:active{
+    transition-duration: 0.1s;
+    color: white;
+    -webkit-text-stroke: white 3px;
+    background-color: rgba(255, 0, 0, 0.795);
+}
+
+.toolsDropdown{
+    display: none;
+    width: 150px;
+    float: right;
+    transform: translateX(-4%);
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 10px 8px 10px 0px rgba(0,0,0,0.3);
+}
+
+.toolsDropdown > button{
+    border: none;
+    background-color: #d3d3d3;
+    width: 150px;
+    font-size: medium;
+    padding: 5px 0;
+    transition-duration: 0.2s;
+}
+
+.toolsDropdown > button:hover{
+    color: white;
+}
+
+.bookTools > .toolsButton{
+    border: 2px solid #50394c00;
+    padding: 7px 12px;
+    background-color: white;
+    color: #50394c;
+    font-size: medium;
+    transform: translateX(15%);
+    transition-duration: 0.4s;
+    width: 130px;
+}
+
+.bookTools > .toolsButton:hover{
+    border-color: #50394c;
+}
+
+.show{display: block;}
