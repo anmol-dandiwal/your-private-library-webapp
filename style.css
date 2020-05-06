@@ -66,7 +66,7 @@ body{
     width: 250px;
     text-align: left;
     padding: 5px 5px;
-    transform: translateX(235px);
+    transform: translateX(166px);
     box-shadow: 10px 15px 10px 1px rgba(0,0,0,0.3);
 }
 
@@ -74,7 +74,7 @@ body{
     margin: 5px 0;
 }
 
-#addButtonForm input[type=text]{
+input[type=text]{
     width: 92%;
     margin-top: 5px;
     margin-bottom: 25px;
@@ -83,11 +83,11 @@ body{
     background-color: #f3f3f3;
 }
 
-#addButtonForm input[type=text]:focus{
+input[type=text]:focus{
     background-color: #dfdfdf;
 }
 
-#addButtonForm > .radio{
+.radio{
     margin: 0 0 15px 0;
 }
 
@@ -138,7 +138,7 @@ body{
     display: block;
 }
 
-#addButtonForm button{
+#addButtonForm button, #searchButtonForm button{
     border: none;
     border-radius: 0;
     padding: 5px 15px;
@@ -146,21 +146,21 @@ body{
     margin: 0 5px 5px 5px;
 }
 
-#addButtonForm [class=btn]{
+#addButtonForm [class=btn], #searchButtonForm [class=btn]{
     background-color: #289628;
     color: white;
     font-weight: bold;
 }
 
-#addButtonForm [class=btn]:hover{
+#addButtonForm [class=btn]:hover, #searchButtonForm [class=btn]:hover{
     background-color: #165316;
 }
 
-#addButtonForm button[type=cancel]{
+#addButtonForm button[type=cancel], #searchButtonForm button[type=cancel]{
     float: right;
 }
 
-#addButtonForm button[type=cancel]:hover{
+#addButtonForm button[type=cancel]:hover, #searchButtonForm button[type=cancel]:hover{
     background-color: rgb(190, 2, 2);
     color: white;
     font-weight: bold;
@@ -169,7 +169,7 @@ body{
 .sortButtonDropdown{
     position: fixed;
     display: none;
-    transform: translate(156px, 0px);
+    transform: translate(315px, 0px);
     width: 100px;
     box-shadow: 5px 5px 25px 1px rgba(0,0,0,0.3);
 }
@@ -180,7 +180,7 @@ body{
     border: none;
     border-radius: 0;
     width: 100px;
-    text-align: right;
+    text-align: left;
 }
 
 .sortButtonDropdown > button:hover{
@@ -191,7 +191,7 @@ body{
 .filterButtonDropdown{
     position: fixed;
     display: none;
-    transform: translate(200px, 0px);
+    transform: translate(399px, 0px);
     width: 150px;
     box-shadow: 5px 5px 25px 1px rgba(0,0,0,0.3);
 }
@@ -202,12 +202,24 @@ body{
     border: none;
     border-radius: 0;
     width: 150px;
-    text-align: right;
+    text-align: left;
 }
 
 .filterButtonDropdown > button:hover{
     background-color: #414040;
     color: white;
+}
+
+.searchButtonDropdown{
+    position: fixed;
+    display: none;
+    transform: translate(493px, 0);
+    background-color: white;
+    border: 1px solid rgb(134, 134, 134);
+    width: 25%;
+    text-align: left;
+    padding: 5px 5px;
+    box-shadow: 10px 15px 10px 1px rgba(0,0,0,0.3);
 }
 
 #library-container{

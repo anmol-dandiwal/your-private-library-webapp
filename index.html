@@ -8,20 +8,23 @@
         <div id="navBar">
             <div id="navBarContent">
                 <span id="title">Your Library</span>
-                <button onclick="showDropdown(this.id)" id="sortButton" class="navButton">Sort</button>
-                <button onclick="showDropdown(this.id)" id="filterButton" class="navButton">Filter</button>  
                 <button onclick="showDropdown(this.id)" id="addButton" class="navButton">Add Book</button>  
+                <button onclick="showDropdown(this.id)" id="sortButton" class="navButton">Sort</button>
+                <button onclick="showDropdown(this.id)" id="filterButton" class="navButton">Filter</button> 
+                <button onclick="showDropdown(this.id)" id="searchButton" class="navButton">Search</button> 
+                <button onclick="render(myLib)" id="clearFilterButton" class="navButton">Clear Filters</button>
+                <button onclick="render(myLib.reverse());" id="reverseButton" class="navButton">↑↓</button>
             </div>
             <div id="navBarDropdowns">
                 <div id="sortButtonDropdown" class="sortButtonDropdown">
-                    <button id="titleSortButton" class="sortButton">Title</button>
-                    <button id="authorSortButton" class="sortButton">Author</button>
-                    <button id="pagesSortButton" class="sortButton">Pages</button>
+                    <button onclick="sort(this.id)" id="titleSortButton" class="sortButton">Title</button>
+                    <button onclick="sort(this.id)" id="authorSortButton" class="sortButton">Author</button>
+                    <button onclick="sort(this.id)" id="pagesSortButton" class="sortButton">Pages</button>
                 </div>
                 <div id="filterButtonDropdown" class="filterButtonDropdown">
-                    <button id="readFilterButton" class="sortButton">Read</button>
-                    <button id="unreadFilterButton" class="sortButton">Unread</button>
-                    <button id="inProgressFilterButton" class="sortButton">In Progress</button>
+                    <button onclick="filter(this.id)" id="readFilterButton" class="sortButton">Read</button>
+                    <button onclick="filter(this.id)" id="unreadFilterButton" class="sortButton">Unread</button>
+                    <button onclick="filter(this.id)" id="inProgressFilterButton" class="sortButton">In Progress</button>
                 </div>
                 <div id="addButtonDropdown" class="addButtonDropdown">
                     <form onsubmit="showDropdown('addButton'); return addBook();" id="addButtonForm" class="formDropdown">
@@ -55,6 +58,28 @@
                         </div>
                         <button type="submit" class="btn">Submit</button>
                         <button onclick="clearForm(); return showDropdown('addButton');" type="cancel" class="btn cancel" >Cancel</button>
+                    </form>
+                </div>
+                <div id="searchButtonDropdown" class="searchButtonDropdown">
+                    <form onsubmit="return false; searchBooks(); " id="searchButtonForm" class="formDropdown">
+                        <input style="margin-bottom: 0; width: 94%;" type="text" placeholder="Search" name="search" required>
+
+                        <h3 style="margin: 10px 0 10px 0;">Search for:</h3>
+
+                        <div id="searchRadios" class="radio">                           
+                            <label for="Title">Title
+                                <input type="radio" id="Title" name="searchType" value="Title" checked>
+                                <span class="checkmark" style="transform: translateY(3px);"></span>
+                            </label><br>
+
+                            <label for="Author">Author
+                                <input type="radio" id="Author" name="searchType" value="Author">
+                                <span class="checkmark" style="transform: translateY(3px);"></span>
+                            </label><br>
+                        </div>
+
+                        <button type="submit" class="btn">Submit</button>
+                        <button onclick="showDropdown('searchButton'); return false;" type="cancel" class="btn cancel">Cancel</button>
                     </form>
                 </div>
             </div>
