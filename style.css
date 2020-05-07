@@ -74,7 +74,7 @@ body{
     margin: 5px 0;
 }
 
-input[type=text]{
+input[type=text], input[type=number]{
     width: 92%;
     margin-top: 5px;
     margin-bottom: 25px;
@@ -83,7 +83,7 @@ input[type=text]{
     background-color: #f3f3f3;
 }
 
-input[type=text]:focus{
+input[type=text]:focus, input[type=number]:focus{
     background-color: #dfdfdf;
 }
 
@@ -156,11 +156,11 @@ input[type=text]:focus{
     background-color: #165316;
 }
 
-#addButtonForm button[type=cancel], #searchButtonForm button[type=cancel]{
+#addButtonForm button[class="btn cancel"], #searchButtonForm button[type=cancel]{
     float: right;
 }
 
-#addButtonForm button[type=cancel]:hover, #searchButtonForm button[type=cancel]:hover{
+#addButtonForm button[class="btn cancel"]:hover, #searchButtonForm button[type=cancel]:hover{
     background-color: rgb(190, 2, 2);
     color: white;
     font-weight: bold;
@@ -252,13 +252,18 @@ button{
     box-shadow: 10px 5px 10px 0px rgb(153, 153, 153);
 }
 
+.bookInfo{
+    height: 80%;
+    overflow: auto;
+}
+
 .bookTools{
     border-top: 1px solid #b2b2b2;
     border-bottom: 1px solid #b2b2b2;
     border-right: 1px solid #b2b2b2;
     position: relative;
-    transform: translate(0%, 250%);
-    width: 219px;
+    transform: translate(0%, 43%);
+    width: 110%;
     height: 50px;
     margin: -10px;
     background-color: #ffef96;

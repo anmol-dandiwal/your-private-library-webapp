@@ -31,13 +31,13 @@
                         <h1>Enter Details</h1>
 
                         <label for="title"><b>Title</b></label>
-                        <input type="text" placeholder="Enter Title" name="title" required>
+                        <input type="text" placeholder="Enter Title" name="title" maxlength="50" required>
 
                         <label for="author"><b>Author</b></label>
-                        <input type="text" placeholder="Enter Author" name="author" required>
+                        <input type="text" placeholder="Enter Author" name="author" maxlength="50" required>
 
-                        <label for="pages"><b>Pages</b></label>
-                        <input type="text" placeholder="Enter Pages" name="pages" required>
+                        <label for="pages"><b>Pages</b></label><br>
+                        <input type="number" placeholder="300" name="pages" min="1" max="9999" required><br>
 
                         <label for="status"><b>Status</b></label><br>
                         <div id="statusRadios" class="radio">                           
@@ -57,12 +57,12 @@
                             </label><br>
                         </div>
                         <button type="submit" class="btn">Submit</button>
-                        <button onclick="clearForm(); return showDropdown('addButton');" type="cancel" class="btn cancel" >Cancel</button>
+                        <button onclick="clearForm(this.parentNode); showDropdown('addButton');" type="button" class="btn cancel">Cancel</button>
                     </form>
                 </div>
                 <div id="searchButtonDropdown" class="searchButtonDropdown">
-                    <form onsubmit="return false; searchBooks(); " id="searchButtonForm" class="formDropdown">
-                        <input style="margin-bottom: 0; width: 94%;" type="text" placeholder="Search" name="search" required>
+                    <form onsubmit="searchBooks(); showDropdown('searchButton'); return false;" id="searchButtonForm" class="formDropdown">
+                        <input style="margin-bottom: 0; width: 94%;" type="text" placeholder="Search" name="search" maxlength="50" required>
 
                         <h3 style="margin: 10px 0 10px 0;">Search for:</h3>
 
@@ -79,7 +79,7 @@
                         </div>
 
                         <button type="submit" class="btn">Submit</button>
-                        <button onclick="showDropdown('searchButton'); return false;" type="cancel" class="btn cancel">Cancel</button>
+                        <button onclick="clearForm(this.parentNode); showDropdown('searchButton'); return false;" type="cancel" class="btn cancel">Cancel</button>
                     </form>
                 </div>
             </div>

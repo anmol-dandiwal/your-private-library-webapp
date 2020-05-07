@@ -9,9 +9,9 @@ function Book(title, author, numPages, status, idNum){
     this.idNum = idNum;
 }
 
-const book1 = new Book("Book1", "Someone", 69, "Read", makeId());
-const book2 = new Book("Book2", "Someone LOL", 420, "Unread", makeId());
-const book3 = new Book("Book3", "Me", 2000, "In Progress", makeId());
+const book1 = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 193, "Unread", makeId());
+const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 324, "Unread", makeId());
+const book3 = new Book("The Great Gatsby", "Francis Scott Fitzgerald", 200, "Unread", makeId());
 
 myLib.push(book1);
 myLib.push(book3);
@@ -23,10 +23,13 @@ const addForm = document.getElementById("addButtonForm");
 const searchForm = document.getElementById("searchButtonForm");
 function addBook(){
     if (addForm.elements[3].checked){
+        console.log("Read");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "Read", makeId()));
     } else if (addForm.elements[4].checked){
+        console.log("Unead");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "Unread", makeId()));
     } else {
+        console.log("Inp");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "In Progress", makeId()));
     }
     render(myLib);
@@ -35,8 +38,7 @@ function addBook(){
 }
 
 function searchBooks(){
-    let newLib;
-    console.log(searchForm.elements[0].value)
+    let newLib = [];
     if (searchForm.elements[1].checked){
         myLib.forEach((book) => {
             if (book.title.toLowerCase() == searchForm.elements[0].value.toLowerCase()){
@@ -50,7 +52,11 @@ function searchBooks(){
             }
         })
     }
-    render(newLib);
+    if (newLib.length == 0){
+        library.innerHTML = `<h1 style="text-align: center;">No results for "${searchForm.elements[0].value}"</h1>`
+    } else {
+    render(newLib);   
+    }
 }
 
 function clearForm(form){
@@ -90,16 +96,25 @@ function changeStatus(elem){
                     dropdownButton.innerHTML = "Unread";
                     toolsMenu.innerHTML = ` <button>Read</button>
                                             <button>In Progress</button>`;
+                    myLib.forEach((book) => {
+                        if (book.idNum == elem) book.status = "Unread";
+                    })
                     break;
                 case "Read":
                     dropdownButton.innerHTML = "Read";
                     toolsMenu.innerHTML = ` <button>Unread</button>
                                             <button>In Progress</button>`;
+                    myLib.forEach((book) => {
+                        if (book.idNum == elem) book.status = "Read";
+                    })
                     break;
                 case "In Progress":
                     dropdownButton.innerHTML = "In Progress";
                     toolsMenu.innerHTML = ` <button>Read</button>
                                             <button>Unread</button>`;
+                    myLib.forEach((book) => {
+                        if (book.idNum == elem) book.status = "In Progress";
+                    })
                     break;
             }
         })
@@ -123,7 +138,7 @@ function sort(cond){
 }
 
 function filter(cond){
-    let newLib;
+    let newLib = [];
     switch(cond){
         case "readFilterButton":
             newLib = myLib.filter(filtRead);
@@ -136,7 +151,11 @@ function filter(cond){
             break;
     }
     showDropdown("filterButton");
+    
     render(newLib);
+    if (newLib.length == 0){
+        library.innerHTML = `<h1 style="text-align: center;">No books match the current filters</h1>`
+    }
 }
 
 function filtRead(book){
@@ -149,66 +168,6 @@ function filtUnread(book){
 
 function filtInp(book){
     return book.status == "In Progress";
-}
-
-function render(lib){
-    const library = document.getElementById("library");
-    library.innerHTML = " ";
-    if (lib.length == 0){
-        library.innerHTML = `<h1 style="text-align: center;">Add a new book to get started</h1>`
-    }
-    lib.forEach((book) => {
-        switch (book.status){
-            case "Unread":
-                library.innerHTML += `  <div id="${book.idNum}" class="book">
-                                            <p>${book.title}</p>
-                                            <p>By: <span class="author">${book.author}</span></p>
-                                            <p><span class="numPages">${book.numPages}</span> pages</p>
-                                            <div id="${book.idNum}Tools" class="bookTools">
-                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
-                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
-                                                                id="${book.idNum}toolsButton" class="toolsButton">Unread</button>
-                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
-                                                    <button>Read</button>
-                                                    <button>In Progress</button>
-                                                </div>
-                                            </div>
-                                        </div>`
-                break;
-            case "Read":
-                library.innerHTML += `  <div id="${book.idNum}" class="book">
-                                            <p>${book.title}</p>
-                                            <p>By: <span class="author">${book.author}</span></p>
-                                            <p><span class="numPages">${book.numPages}</span> pages</p>
-                                            <div id="${book.idNum}Tools" class="bookTools">
-                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
-                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
-                                                                id="${book.idNum}toolsButton" class="toolsButton">Read</button>
-                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
-                                                    <button>Unread</button>
-                                                    <button>In Progress</button>
-                                                </div>
-                                            </div>
-                                        </div>`
-                break;
-            case "In Progress":
-                library.innerHTML += `  <div id="${book.idNum}" class="book">
-                                            <p>${book.title}</p>
-                                            <p>By: <span class="author">${book.author}</span></p>
-                                            <p><span class="numPages">${book.numPages}</span> pages</p>
-                                            <div id="${book.idNum}Tools" class="bookTools">
-                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
-                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
-                                                                id="${book.idNum}toolsButton" class="toolsButton">In Progress</button>
-                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
-                                                    <button>Read</button>
-                                                    <button>Unread</button>
-                                                </div>
-                                            </div>
-                                        </div>`
-                break;
-        }
-    })
 }
 
 function showDropdown(elem){
@@ -231,4 +190,70 @@ window.onclick = function(event){
             }
         }
     }
+}
+
+function render(lib){
+    const library = document.getElementById("library");
+    library.innerHTML = " ";
+    if (lib.length == 0){
+        library.innerHTML = `<h1 style="text-align: center;">Add a new book to get started</h1>`
+    }
+    lib.forEach((book) => {
+        switch (book.status){
+            case "Unread":
+                library.innerHTML += `  <div id="${book.idNum}" class="book">
+                                            <div id="${book.idNum}Info" class="bookInfo">
+                                                <p>${book.title}</p>
+                                                <p>By: <span class="author">${book.author}</span></p>
+                                                <p><span class="numPages">${book.numPages}</span> pages</p>
+                                            </div>
+                                            <div id="${book.idNum}Tools" class="bookTools">
+                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
+                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
+                                                                id="${book.idNum}toolsButton" class="toolsButton">Unread</button>
+                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
+                                                    <button>Read</button>
+                                                    <button>In Progress</button>
+                                                </div>
+                                            </div>
+                                        </div>`
+                break;
+            case "Read":
+                library.innerHTML += `  <div id="${book.idNum}" class="book">
+                                            <div id="${book.idNum}Info" class="bookInfo">
+                                                <p>${book.title}</p>
+                                                <p>By: <span class="author">${book.author}</span></p>
+                                                <p><span class="numPages">${book.numPages}</span> pages</p>
+                                            </div>
+                                            <div id="${book.idNum}Tools" class="bookTools">
+                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
+                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
+                                                                id="${book.idNum}toolsButton" class="toolsButton">Read</button>
+                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
+                                                    <button>Unread</button>
+                                                    <button>In Progress</button>
+                                                </div>
+                                            </div>
+                                        </div>`
+                break;
+            case "In Progress":
+                library.innerHTML += `  <div id="${book.idNum}" class="book">
+                                            <div id="${book.idNum}Info" class="bookInfo">
+                                                <p>${book.title}</p>
+                                                <p>By: <span class="author">${book.author}</span></p>
+                                                <p><span class="numPages">${book.numPages}</span> pages</p>
+                                            </div>
+                                            <div id="${book.idNum}Tools" class="bookTools">
+                                                <button onclick="deleteBook(this.parentNode.parentNode.id) "class="deleteButton">X</button>
+                                                <button onclick="showDropdown(this.parentNode.parentNode.id); changeStatus(this.parentNode.parentNode.id);" 
+                                                                id="${book.idNum}toolsButton" class="toolsButton">In Progress</button>
+                                                <div id="${book.idNum}Dropdown" class="toolsDropdown">     
+                                                    <button>Read</button>
+                                                    <button>Unread</button>
+                                                </div>
+                                            </div>
+                                        </div>`
+                break;
+        }
+    })
 }
