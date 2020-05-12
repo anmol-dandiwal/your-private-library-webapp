@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/7.14.3/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="/__/firebase/7.14.3/firebase-analytics.js"></script>
+        <script src="/__/firebase/7.14.3/firebase-database.js"></script>
+        <script src="/__/firebase/7.14.3/firebase-auth.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
         <title>Your Library</title>
         <link rel="stylesheet" href="style.css">
     </head>
@@ -14,6 +26,7 @@
                 <button onclick="showDropdown(this.id)" id="searchButton" class="navButton">Search</button> 
                 <button onclick="render(myLib)" id="clearFilterButton" class="navButton">Clear Filters</button>
                 <button onclick="render(myLib.reverse());" id="reverseButton" class="navButton">↑↓</button>
+                <button onclick="signIn()" id="signInButton" class="navButton" style="float: right; margin-right: -10px;">Sign In</button>
             </div>
             <div id="navBarDropdowns">
                 <div id="sortButtonDropdown" class="sortButtonDropdown">
@@ -88,6 +101,6 @@
             <div id="library"> 
             </div>
         </div>
-        <script src="script.js"></script>
     </body>
+    <script src="script.js"></script>
 </html>

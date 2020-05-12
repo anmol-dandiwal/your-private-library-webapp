@@ -192,6 +192,18 @@ window.onclick = function(event){
     }
 }
 
+function signIn(){
+    let provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token.
+    let token = result.credential.accessToken;
+    // The signed-in user info.
+    let user = result.user;
+    });
+}
+
 function render(lib){
     const library = document.getElementById("library");
     library.innerHTML = " ";
