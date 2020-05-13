@@ -14,8 +14,8 @@ const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 324, "Unread", mak
 const book3 = new Book("The Great Gatsby", "Francis Scott Fitzgerald", 200, "Unread", makeId());
 
 myLib.push(book1);
-myLib.push(book3);
 myLib.push(book2);
+myLib.push(book3);
 
 render(myLib);
 
@@ -23,13 +23,10 @@ const addForm = document.getElementById("addButtonForm");
 const searchForm = document.getElementById("searchButtonForm");
 function addBook(){
     if (addForm.elements[3].checked){
-        console.log("Read");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "Read", makeId()));
     } else if (addForm.elements[4].checked){
-        console.log("Unead");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "Unread", makeId()));
     } else {
-        console.log("Inp");
         myLib.push(new Book(addForm.elements[0].value, addForm.elements[1].value, addForm.elements[2].value, "In Progress", makeId()));
     }
     render(myLib);
@@ -190,18 +187,6 @@ window.onclick = function(event){
             }
         }
     }
-}
-
-function signIn(){
-    let provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Google Access Token.
-    let token = result.credential.accessToken;
-    // The signed-in user info.
-    let user = result.user;
-    });
 }
 
 function render(lib){
